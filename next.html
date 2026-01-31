@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Question ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6eb;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden;
+        }
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+            max-width: 600px;
+            margin: auto;
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            color: #ff3366;
+            font-size: 32px;
+        }
+        button {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 15px;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #answer {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #ff3366;
+            display: none;
+        }
+        .heart {
+            font-size: 60px;
+            animation: beat 1s infinite;
+        }
+        @keyframes beat {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        /* Floating hearts */
+        .floatingHeart {
+            position: fixed;
+            font-size: 30px;
+            color: #ff3366;
+            animation: floatUp 5s linear forwards;
+            z-index: 5;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity:1; }
+            100% { transform: translateY(-800px) scale(1.5); opacity:0; }
+        }
+
+        /* Gift popup */
+        #giftPopup {
+            display: none;
+            position: fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background:white;
+            border-radius:15px;
+            box-shadow:0 0 15px rgba(0,0,0,0.3);
+            z-index: 20;
+            padding:20px;
+            cursor:pointer;
+        }
+        #giftPopup img {
+            max-width:300px;
+            border-radius:10px;
+        }
+
+        /* Blast animation */
+        .blast {
+            animation: blastAnim 0.6s forwards;
+        }
+        @keyframes blastAnim {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        /* Hidden love message */
+        #loveMessage {
+            display: none;
+            position: fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background:#ffe6eb;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 0 15px rgba(0,0,0,0.3);
+            font-size:28px;
+            color:#ff3366;
+            z-index:25;
+        }
+
+        /* I Love You button text */
+        #loveText {
+            display: none;
+            font-size: 32px;
+            color: #ff3366;
+            margin-top: 20px;
+            animation: pop 1.2s infinite;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>💍 This year will you marry me? 💖</h1>
+
+    <button id="yesBtn" onclick="sayYes()">YES 💕</button>
+    <button id="noBtn" onclick="sayNo()">NO😡😤
+</button>
+
+    <div id="answer"></div>
+</div>
+
+<!-- Music -->
+<audio id="music" preload="auto">
+    <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Gift Popup -->
+<div id="giftPopup" onclick="blastGift()">
+    <img src="gift.png" alt="Gift for you 💖">
+</div>
+
+<!-- Hidden Love Message -->
+<div id="loveMessage">
+    🥰<br>
+    I Love you Pattu umhaaaa 💋😘
+</div>
+
+<!-- Optional LOVE button -->
+
+<script>
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "floatingHeart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (20 + Math.random()*30) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}
+
+// YES button
+function sayYes() {
+    document.getElementById("noBtn").disabled = true;
+
+    const music = document.getElementById("music");
+    music.volume = 0;
+    music.currentTime = 0;
+    music.play();
+    let vol = 0;
+    const fade = setInterval(() => {
+        if(vol < 1){
+            vol += 0.05;
+            music.volume = vol;
+        } else clearInterval(fade);
+    }, 200);
+
+    const ans = document.getElementById("answer");
+    ans.style.display = "block";
+    ans.innerHTML = `
+        💖 He said YES! 💖<br><br>
+        Forever starts now 🥰<br>
+        <div class="heart">❤️</div>
+    `;
+
+    setInterval(createHeart, 400);
+
+    setTimeout(() => {
+        document.getElementById("giftPopup").style.display = "block";
+    }, 1000);
+}
+
+// NO button
+function sayNo() {
+    document.getElementById("yesBtn").disabled = true;
+    const ans = document.getElementById("answer");
+    ans.style.display = "block";
+    ans.innerHTML = `
+        Heyyy😡Why did you click NO ?😤💔
+               i kill you mind it 
+             Okay… I’ll wait 💕<br>
+        My love is only for you it will never change ❤️
+    `;
+}
+
+// Gift click → blast + hidden message
+function blastGift() {
+    const gift = document.getElementById("giftPopup");
+    gift.classList.add("blast");
+
+    setTimeout(() => {
+        gift.style.display = "none";
+        document.getElementById("loveMessage").style.display = "block";
+    }, 600);
+}
+
+// Show love text button
+function showLove() {
+    document.getElementById("loveText").style.display = "block";
+}
+</script>
+</body>
+</html>
+
+
