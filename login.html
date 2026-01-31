@@ -1,83 +1,143 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login for Love ❤️</title>
+    <title>For My Love ❤️</title>
     <style>
         body {
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            background-color: #ffe6eb;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            text-align: center;
+            padding: 50px;
         }
-        .login-box {
+
+        .box {
             background: white;
             padding: 30px;
             border-radius: 15px;
-            text-align: center;
-            width: 320px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            max-width: 600px;
+            margin: auto;
         }
+
+        /* 🎁 Gift */
+        .gift {
+            font-size: 100px;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* 💥 Blast */
+        .blast {
+            animation: blast 0.6s forwards;
+        }
+
+        @keyframes blast {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        /* 💖 Valentine */
+        #valentine {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         h1 {
             color: #ff3366;
         }
-        input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
+
+        .heart {
+            font-size: 80px;
+            animation: beat 1s infinite;
         }
-        button {
+
+        @keyframes beat {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* ⏩ Next Button */
+        #nextBtn {
+            display: none;
+            margin-top: 25px;
             background: #ff3366;
             color: white;
             border: none;
-            padding: 10px;
-            width: 95%;
-            border-radius: 8px;
+            padding: 12px 25px;
             font-size: 18px;
+            border-radius: 10px;
             cursor: pointer;
         }
-        button:hover {
+
+        #nextBtn:hover {
             background: #e62e5c;
         }
+
         p {
-            color: #555;
-            font-size: 14px;
+            font-size: 20px;
+            color: #444;
         }
     </style>
 </head>
 <body>
 
-<div class="login-box">
-    <h1>   Welcome you ......
-         My Love (Pattu❤️)</h1>
-    <p><b>Only your heart can unlock this Buji ma 💖</b></p>
+<div class="box">
 
-    <input type="text" id="username" placeholder="Enter your favourite name 💕">
-    <input type="password" id="password" placeholder="Enter your secret Code ❤️">
-<br>
-    <button onclick="login()">Click me to enter in my secret heart Pattu💌</button>
+    <!-- 🎁 Gift -->
+    <div id="giftBox" class="gift" onclick="openGift()">🎁</div>
+    <p id="tapText">Tap the gift Pattu💝</p>
 
-    <p id="error" style="color:red;"></p>
+    <!-- 💖 Valentine Message -->
+    <div id="valentine">
+        <h1>💖 Happy Valentine’s Day Pattu 💖</h1>
+        <div class="heart">❤️</div>
+        <p>
+            Universe  🥰<br>
+            I love you endlessly 💕
+        </p>
+    </div>
+
+    <!-- ⏩ NEXT BUTTON -->
+    <button id="nextBtn" onclick="goNext()">Next ➡️</button>
+
 </div>
 
 <script>
-    function login() {
-        var user = document.getElementById("username").value;
-        var pass = document.getElementById("password").value;
+function openGift() {
+    const gift = document.getElementById("giftBox");
+    const text = document.getElementById("tapText");
+    const valentine = document.getElementById("valentine");
+    const nextBtn = document.getElementById("nextBtn");
 
-        if (user === "AmjathZoyaa" && pass === "2604") {
-            window.location.href = "index.html";
-        } else {
-            document.getElementById("error").innerText =
-                "Oops! Only my love knows the secret code 💔";
-        }
-    }
+    gift.classList.add("blast");
+    text.style.display = "none";
+
+    setTimeout(() => {
+        gift.style.display = "none";
+        valentine.style.display = "block";
+        nextBtn.style.display = "inline-block";
+    }, 600);
+}
+
+function goNext() {
+    // Go to proposal page
+    window.location.href = "next.html";
+}
+
 </script>
-
 
 </body>
 </html>
+
+

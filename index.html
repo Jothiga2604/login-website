@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login for Love ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #ff3366;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 95%;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #e62e5c;
+        }
+        p {
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <h1>   Welcome you ......
+         My Love (Pattu❤️)</h1>
+    <p><b>Only your heart can unlock this Buji ma 💖</b></p>
+
+    <input type="text" id="username" placeholder="Enter your favourite name 💕">
+    <input type="password" id="password" placeholder="Enter your secret Code ❤️">
+<br>
+    <button onclick="login()">Click me to enter in my secret heart Pattu💌</button>
+
+    <p id="error" style="color:red;"></p>
+</div>
+
+<script>
+    function login() {
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+
+        if (user === "AmjathZoyaa" && pass === "2604") {
+            window.location.href = "index.html";
+        } else {
+            document.getElementById("error").innerText =
+                "Oops! Only my love knows the secret code 💔";
+        }
+    }
+</script>
+
+
+</body>
+</html>
